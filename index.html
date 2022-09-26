@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+
+  <h1>GET API which accepts Query param, path param and returns a json object of it</h1>
+    <button class="btn3">GET request using node-fetch dependency</button>
+    <p>(fetch url:'http://localhost:8080/Login/12/23441/?fullname=Anirudh+Nayak&age=22')</p>
+
+  <h1>POST API which accepts json object data and returns an array format of it</h1>
+  <h2>Method 1:</h2>
+    <form action="/users" method="post">
+
+      <input type="text" name="user" value="Anirudh Nayak" />
+
+      <input type="text" name="id" value="Node@123" />
+
+      <button type="submit">POST request using html form</button>
+
+    </form>
+    <p>                                   </p>
+  <h2>Method 2:</h2>
+    <button class="btn2">POST request using node-fetch dependency</button>
+    <p>                                   </p>
+    <p> 
+
+      Request body:
+      const myObject = 
+      {
+        
+      name1: "Anirudh", id1: 1233 ,
+      name2: "Dark Lord", id2: 1224 ,
+      name3: "Kaal", id3: 1289 
+
+      };
+    </p>
+    <p>(output displayed in console tab)</p>
+      
+    <script>
+
+      const btn2 = document.querySelector(".btn2");
+      const btn3 = document.querySelector(".btn3");
+
+      const myObject = {
+        
+          name1: "Anirudh", id1: 1233 ,
+          name2: "Dark Lord", id2: 1224 ,
+          name3: "Kaal", id3: 1289 
+    
+      };
+
+      btn2.addEventListener("click", () => {
+        fetch("http://localhost:8080/users/id", {
+          method: "POST",
+          body: JSON.stringify(myObject),
+          headers: { "Content-Type": "application/json" },
+        })
+          .then((res) => res.json())
+          .then((json) => {
+            console.log("JSON data returned in the form of array: ");
+            console.log(json);
+            //console.log(json.requestBody)
+            // json.requestBody.forEach((element) => {
+            //   console.log(element);
+            // });
+          });
+      });
+
+
+      btn3.addEventListener('click',()=>{
+
+          console.log("Get request initiated");
+          fetch('http://localhost:8080/Login/12/23441/?fullname=Anirudh+Nayak&age=22').then(res=>res.json()).then(data=>{
+          
+          console.log("Result of GET API");
+          console.log(data);
+
+          }) 
+
+
+        })
+    
+
+    </script>
+  </body>
+</html>
